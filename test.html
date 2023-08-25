@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>plot Theo Jansen</title>
+</head>
+
+<body>
+    <svg id="animationContainer" width="400" height="400">
+        <line id="a" x1="200" y1="200" x2="200" y2="200" stroke="#000000" stroke-width="1" />
+        <line id="b" x1="200" y1="200" x2="210" y2="200" stroke="#000000" stroke-width="1" />
+        <line id="c" x1="200" y1="200" x2="220" y2="200" stroke="#aaaa00" stroke-width="1" />
+        <line id="d" x1="200" y1="200" x2="230" y2="200" stroke="#000000" stroke-width="1" />
+        <line id="e" x1="200" y1="200" x2="240" y2="200" stroke="#000000" stroke-width="1" />
+        <line id="f" x1="200" y1="200" x2="250" y2="200" stroke="#00ff00" stroke-width="1" />
+        <line id="g" x1="200" y1="200" x2="260" y2="200" stroke="#000000" stroke-width="1" />
+        <line id="h" x1="200" y1="200" x2="270" y2="200" stroke="#000000" stroke-width="1" />
+        <line id="i" x1="200" y1="200" x2="280" y2="200" stroke="#000000" stroke-width="1" />
+        <line id="j" x1="200" y1="200" x2="290" y2="200" stroke="#0000ff" stroke-width="1" />
+        <line id="k" x1="200" y1="200" x2="300" y2="200" stroke="#ff0000" stroke-width="1" />
+        <line id="l" x1="200" y1="200" x2="310" y2="200" stroke="#000000" stroke-width="1" />
+        <line id="m" x1="200" y1="200" x2="310" y2="200" stroke="#ff00ff" stroke-width="1" />
+        <circle id="point_h" cx="-100" cy="-100" r="2" fill="#ff0000" />
+        <path id="trajectory" fill="none" stroke="#ff0000" stroke-width="1" />
+    </svg>
+
+    <script>
+        const l_a = document.getElementById('a');
+        const l_b = document.getElementById('b');
+        const l_c = document.getElementById('c');
+        const l_d = document.getElementById('d');
+        const l_e = document.getElementById('e');
+        const l_f = document.getElementById('f');
+        const l_g = document.getElementById('g');
+        const l_h = document.getElementById('h');
+        const l_i = document.getElementById('i');
+        const l_j = document.getElementById('j');
+        const l_k = document.getElementById('k');
+        const l_l = document.getElementById('l');
+        const l_m = document.getElementById('m');
+        const point_h = document.getElementById('point_h');
+
+        const animationDuration = 2000;
+        let startTime = null;
+        let pointsHistory = [];
+
+        function animate(timestamp) {
+            if (!startTime) startTime = timestamp;
+            const progress = (timestamp - startTime) / animationDuration;
+            if (progress >= 100) return;
+            theta = 2 * Math.PI * progress;
+            a = 38.0, b = 41.5, c = 39.3, d = 40.1, e = 55.8, f = 39.4, g = 36.7, h = 65.7, i = 49.0, j = 50.0, k = 61.9, l = 7.8, m = 15.0;
+
+            const size = 2;
+            a = a * size;
+            b = b * size;
+            c = c * size;
+            d = d * size;
+            e = e * size;
+            f = f * size;
+            g = g * size;
+            h = h * size;
+            i = i * size;
+            j = j * size;
+            k = k * size;
+            l = l * size;
+            m = m * size;
+
+
+            const x0 = 300;
+            const y0 = -200;
+
+            const x1 = x0 + m * Math.cos(theta);
+            const y1 = y0 + m * Math.sin(theta);
+            const x2 = x0 - a;
+            const y2 = y0 - l;
+
+            const angle_821 = Math.atan2(y1 - y2, x1 - x2);
+            const l21 = Math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2);
+            const angle_123 = Math.acos((l21 ** 2 + b ** 2 - j ** 2) / (2 * l21 * b));
+            const angle_823 = angle_821 + angle_123;
+            const x3 = x2 + b * Math.cos(angle_823);
+            const y3 = y2 + b * Math.sin(angle_823);
+
+            const angle_124 = Math.acos((l21 ** 2 + c ** 2 - k ** 2) / (2 * l21 * c));
+            const angle_428 = angle_124 - angle_821;
+            const x4 = x2 + c * Math.cos(angle_428);
+            const y4 = y2 - c * Math.sin(angle_428);
+
+            const angle_325 = Math.acos((b ** 2 + d ** 2 - e ** 2) / (2 * b * d));
+            const angle_825 = angle_821 + angle_123 + angle_325;
+            const x5 = x2 + d * Math.cos(angle_825);
+            const y5 = y2 + d * Math.sin(angle_825);
+
+            const l45 = Math.sqrt((x5 - x4) ** 2 + (y5 - y4) ** 2);
+            const angle_549 = Math.atan2(y5 - y4, x5 - x4);
+            const angle_546 = Math.acos((l45 ** 2 + g ** 2 - f ** 2) / (2 * l45 * g));
+            const angle_649 = angle_549 + angle_546;
+            const x6 = x4 + g * Math.cos(angle_649);
+            const y6 = y4 + g * Math.sin(angle_649);
+
+            const angle_647 = Math.acos((g ** 2 + i ** 2 - h ** 2) / (2 * g * i));
+            const angle_947 = angle_649 + angle_647;
+            const x7 = x4 + i * Math.cos(angle_947);
+            const y7 = y4 + i * Math.sin(angle_947);
+
+            const x8 = x0;
+            const y8 = y0 - l;
+
+            l_a.setAttribute('x1', x2); l_a.setAttribute('y1', -y2); l_a.setAttribute('x2', x8); l_a.setAttribute('y2', -y8);
+            l_b.setAttribute('x1', x2); l_b.setAttribute('y1', -y2); l_b.setAttribute('x2', x3); l_b.setAttribute('y2', -y3);
+            l_c.setAttribute('x1', x2); l_c.setAttribute('y1', -y2); l_c.setAttribute('x2', x4); l_c.setAttribute('y2', -y4);
+            l_d.setAttribute('x1', x2); l_d.setAttribute('y1', -y2); l_d.setAttribute('x2', x5); l_d.setAttribute('y2', -y5);
+            l_e.setAttribute('x1', x3); l_e.setAttribute('y1', -y3); l_e.setAttribute('x2', x5); l_e.setAttribute('y2', -y5);
+            l_f.setAttribute('x1', x5); l_f.setAttribute('y1', -y5); l_f.setAttribute('x2', x6); l_f.setAttribute('y2', -y6);
+            l_g.setAttribute('x1', x4); l_g.setAttribute('y1', -y4); l_g.setAttribute('x2', x6); l_g.setAttribute('y2', -y6);
+            l_h.setAttribute('x1', x6); l_h.setAttribute('y1', -y6); l_h.setAttribute('x2', x7); l_h.setAttribute('y2', -y7);
+            l_i.setAttribute('x1', x4); l_i.setAttribute('y1', -y4); l_i.setAttribute('x2', x7); l_i.setAttribute('y2', -y7);
+            l_j.setAttribute('x1', x1); l_j.setAttribute('y1', -y1); l_j.setAttribute('x2', x3); l_j.setAttribute('y2', -y3);
+            l_k.setAttribute('x1', x1); l_k.setAttribute('y1', -y1); l_k.setAttribute('x2', x4); l_k.setAttribute('y2', -y4);
+            l_l.setAttribute('x1', x0); l_l.setAttribute('y1', -y0); l_l.setAttribute('x2', x8); l_l.setAttribute('y2', -y8);
+            l_m.setAttribute('x1', x0); l_m.setAttribute('y1', -y0); l_m.setAttribute('x2', x1); l_m.setAttribute('y2', -y1);
+
+            const point_h = document.getElementById('point_h');
+            point_h.setAttribute('cx', x7); point_h.setAttribute('cy', -y7);
+
+            const currentPoint = { x: x7, y: -y7 }; // Save the current point's position
+            pointsHistory.push(currentPoint); // Add the current point to the history
+
+            // Limit the points history to a certain length (optional)
+            const maxHistoryLength = 100; // You can adjust this value
+            if (pointsHistory.length > maxHistoryLength) {
+                pointsHistory.shift(); // Remove the oldest point to maintain the length
+            }
+
+            // Update the trajectory path data based on the points history
+            const trajectoryPath = document.getElementById('trajectory');
+            const pathData = pointsHistory.map(point => `${point.x},${point.y}`).join(' ');
+            trajectoryPath.setAttribute('d', `M${pathData}`);
+
+
+            requestAnimationFrame(animate);
+        }
+        requestAnimationFrame(animate);
+    </script>
+</body>
+
+</html>
